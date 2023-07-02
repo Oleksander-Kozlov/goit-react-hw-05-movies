@@ -1,7 +1,7 @@
 import {
-  Routes, Route,
+  Routes,
+  Route,
   // Outlet
-
 } from 'react-router-dom';
 
 import { Home } from './pages/Home.jsx';
@@ -10,10 +10,10 @@ import { Reviews } from '../components/Reviews/Reviews.jsx';
 import { Cast } from '../components/Cast/Cast.jsx';
 import MoviesDetails from '../components/MoviesDetails/MoviesDetails.jsx';
 import { NotFound } from '../components/NotFound/NotFound.jsx';
-import Layout from './Layout/Layout.jsx';
+import Layout from './pages/Layout/Layout.jsx';
 // import {  Container, Header, Link, Logo} from './App.styled.js';
 
- const App = () => {
+const App = () => {
   // const StyledLink = styled(NavLink)`
   //   color: black;
 
@@ -37,4 +37,4 @@ import Layout from './Layout/Layout.jsx';
     </Routes>
   );
 };
-export default App
+export default App;
