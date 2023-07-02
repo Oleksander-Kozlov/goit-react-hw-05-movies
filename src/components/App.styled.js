@@ -38,3 +38,15 @@ export const Link = styled(NavLink)`
     background-color: orangered;
   }
 `;
+export const LinkC = styled(NavLink)`
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  /* font-weight: 500; */
+
+  &.active {
+    color: red;
+    /* background-color: orangered; */
+  }
+`;

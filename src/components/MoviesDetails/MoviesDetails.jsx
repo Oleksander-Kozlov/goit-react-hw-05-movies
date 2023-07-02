@@ -1,7 +1,7 @@
 // import { FilmCard } from 'components/FilmCard/FilmCard';
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from '../App.styled.js';
+import { Outlet, useParams } from 'react-router-dom';
+import { Link, LinkC } from '../App.styled.js';
 import { fetchMovieInfoById } from '../Api.js';
 import { useEffect, useState } from 'react';
 const MoviesDetails = () => {
@@ -15,7 +15,7 @@ const MoviesDetails = () => {
       //   return;
       // }
       try {
-        const film = await fetchMovieInfoById({ id });
+        const film = await fetchMovieInfoById({ id, abortCTRL });
         console.log('film', film);
         console.log('moviesId', id);
         setFilmInfo(film);
@@ -29,7 +29,7 @@ const MoviesDetails = () => {
     };
   }, [id]);
 
-  const { genres, title, overview, release_date, poster_path, vote_average } =
+  const { genres, title, overview, release_date, poster_path, vote_average, credits  } =
     filmInfo;
   
   console.log('vote_average', typeof vote_average);
@@ -52,9 +52,7 @@ const MoviesDetails = () => {
             {title} ({release_date.substring(0, 4)})
           </h2>
         )}
-        {vote_average && (
-          <p>User Score {Math.round(vote_average * 10)}%</p>
-        )}
+        {vote_average && <p>User Score {Math.round(vote_average * 10)}%</p>}
         <div>{overview}</div>
         <h3>Genres</h3>
         {genres && genres.length > 0 && (
@@ -64,9 +62,16 @@ const MoviesDetails = () => {
       <div>
         <h3>Aditional information</h3>
         <ul>
-          <li></li>
-          <li></li>
+          <li>
+            <LinkC to="cast" cast={credits}>
+              Cast
+            </LinkC>
+          </li>
+          <li>
+            <LinkC to="reviews">Reviews</LinkC>
+          </li>
         </ul>
+        <Outlet />
       </div>
     </div>
   );

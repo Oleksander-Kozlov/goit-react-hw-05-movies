@@ -30,19 +30,20 @@ export async function fetchQueryMovie({queryMovie, abortCtrl, page}) {
   return response.data;
 }
 // /movies/get-movie-details запит повної інформації про фільм для сторінки кінофільму.
-export async function fetchMovieInfoById({ id
-  // , abortCtrl
+export async function fetchMovieInfoById({
+  id,
+   abortCTRL
 }) {
   console.log('ID', id);
   const response = await axios.get(`movie/${id}}`, {
-    // signal: abortCtrl.signal,
+    signal: abortCTRL.signal,
     params: {
       language: 'en-US',
       include_adult: false,
-      // append_to_response: 'credits, reviews',
+      append_to_response: 'credits, reviews',
     },
   });
-console.log(response.data);
+  console.log(response.data);
 
   return response.data;
 }
@@ -70,5 +71,28 @@ console.log(response.data);
 
 // console.log(response.data);
 // /movies/get-movie-credits запит інформації про акторський склад для сторінки кінофільму.
+export async function fetchCastById({
+  id,
+  abortCTRL
+}) {
+  console.log('ID', id);
+  const response = await axios.get(`movie/${id}/credits?language=en-US`, {
+    signal: abortCTRL.signal,
+   
+  });
+  console.log("response.data", response.data);
+
+  return response.data.cast;
+}
+
 
 // /movies/get-movie-reviews запит оглядів для сторінки кінофільму.
+export async function fetchReviewById({ id, abortCTRL }) {
+  console.log('ID', id);
+  const response = await axios.get(`movie/${id}/reviews?language=en-US`, {
+    signal: abortCTRL.signal,
+  });
+  console.log('response.data', response.data);
+
+  return response.data.results;
+}
