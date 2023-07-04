@@ -14,8 +14,7 @@ export const Movies = () => {
   const [movieListQuery, setMovieListQuery] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
-  
-console.log(movieListQuery);
+
    useEffect(() => {
      let abortCTRL = new AbortController();
      const fetchData = async () => {

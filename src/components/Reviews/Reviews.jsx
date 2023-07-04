@@ -11,8 +11,7 @@ export const Reviews = () => {
     const fetchData = async () => {
       try {
         const authors = await fetchReviewById({ id, abortCTRL });
-        console.log('Review', authors);
-        console.log('moviesId', id);
+        
         setReview(
           authors
             .map(obj => {

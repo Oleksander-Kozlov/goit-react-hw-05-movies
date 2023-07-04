@@ -12,8 +12,7 @@ export const Cast = () => {
     const fetchData = async () => {
       try {
         const actors = await fetchCastById({ id, abortCTRL });
-        console.log('actors', actors);
-        console.log('moviesId', id);
+    
         setCast(
           actors
             .map(obj => {

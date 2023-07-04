@@ -32,7 +32,7 @@ export async function fetchMovieInfoById({
   id,
    abortCTRL
 }) {
-  console.log('ID', id);
+
   const response = await axios.get(`movie/${id}}`, {
     signal: abortCTRL.signal,
     params: {
@@ -41,7 +41,7 @@ export async function fetchMovieInfoById({
       append_to_response: 'credits, reviews',
     },
   });
-  console.log(response.data);
+
 
   return response.data;
 }
@@ -51,24 +51,22 @@ export async function fetchCastById({
   id,
   abortCTRL
 }) {
-  console.log('ID', id);
+
   const response = await axios.get(`movie/${id}/credits?language=en-US`, {
     signal: abortCTRL.signal,
    
   });
-  console.log("response.data", response.data);
-
   return response.data.cast;
 }
 
 
 // /movies/get-movie-reviews запит оглядів для сторінки кінофільму.
 export async function fetchReviewById({ id, abortCTRL }) {
-  console.log('ID', id);
+
   const response = await axios.get(`movie/${id}/reviews?language=en-US`, {
     signal: abortCTRL.signal,
   });
-  console.log('response.data', response.data);
+  
 
   return response.data.results;
 }

@@ -16,8 +16,7 @@ const MoviesDetails = () => {
       // }
       try {
         const film = await fetchMovieInfoById({ id, abortCTRL });
-        console.log('film', film);
-        console.log('moviesId', id);
+     
         setFilmInfo(film);
       } catch {
       } finally {
@@ -30,9 +29,7 @@ const MoviesDetails = () => {
   }, [id]);
 
   const { genres, title, overview, release_date, poster_path, vote_average, credits  } =
-    filmInfo;
-  
-  console.log('vote_average', typeof vote_average);
+    filmInfo;  
  
   return (
     <div>
