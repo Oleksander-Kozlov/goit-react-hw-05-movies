@@ -1,12 +1,15 @@
 // import { FilmCard } from 'components/FilmCard/FilmCard';
-import React from 'react';
-import { Outlet, useParams } from 'react-router-dom';
-import { Link, LinkC } from '../App.styled.js';
-import { fetchMovieInfoById } from '../Api.js';
+import React, { Suspense } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import {  Link } from '../../App.styled.js';
+import { fetchMovieInfoById } from '../../Api.js';
 import { useEffect, useState } from 'react';
+import { BackLink } from 'components/BackLink.jsx';
+
 const MoviesDetails = () => {
   const { id } = useParams();
   const [filmInfo, setFilmInfo] = useState({});
+  const location = useLocation();
   useEffect(() => {
     const abortCTRL = new AbortController();
     const fetchData = async () => {
@@ -30,11 +33,14 @@ const MoviesDetails = () => {
 
   const { genres, title, overview, release_date, poster_path, vote_average, credits  } =
     filmInfo;  
+  
  
+  const backLinkHref = location.state?.from ?? '/movies';
+  
   return (
     <div>
       <p>
-        <Link to="/">GO BACK</Link>
+        <BackLink to={backLinkHref}>GO BACK</BackLink>
       </p>
       {poster_path && (
         <img
@@ -58,21 +64,30 @@ const MoviesDetails = () => {
       </div>
       <div>
         <h3>Aditional information</h3>
-        <ul>
-          <li>
-            <LinkC to="cast" cast={credits}>
+        <ul >
+          <li
+            style={{
+              // display: 'flex',
+              // justifyContent: 'center',
+              marginBottom: '30px',
+              // fontSize: 40,
+              // color: '#010101',
+            }}
+          >
+            <Link to="cast" cast={credits}>
               Cast
-            </LinkC>
+            </Link>
           </li>
           <li>
-            <LinkC to="reviews">Reviews</LinkC>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );
 };
 
 export default MoviesDetails;
-// {/* <Outlet />; */}

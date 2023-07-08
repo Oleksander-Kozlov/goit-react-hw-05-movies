@@ -1,7 +1,7 @@
 import { Formik,  ErrorMessage } from 'formik';
 import { Field, Form, BTNSubmit } from './SearchBox.styled';
 const initialValues = { query: '' };
-export const SearchBox = ({ handleSubmit }) => {
+ const SearchBox = ({ handleSubmit }) => {
   const onSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -32,3 +32,4 @@ export const SearchBox = ({ handleSubmit }) => {
     </Formik>
   );
 };
+export default SearchBox;

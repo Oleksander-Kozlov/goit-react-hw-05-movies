@@ -1,32 +1,19 @@
-import {
-  Routes,
-  Route,
-  
-} from 'react-router-dom';
-
-import { Home } from './pages/Home.jsx';
-import { Movies } from './pages/Movies.jsx';
-import { Reviews } from '../components/Reviews/Reviews.jsx';
-import { Cast } from '../components/Cast/Cast.jsx';
-import MoviesDetails from '../components/MoviesDetails/MoviesDetails.jsx';
-import { NotFound } from '../components/NotFound/NotFound.jsx';
-import Layout from './pages/Layout/Layout.jsx';
-// import {  Container, Header, Link, Logo} from './App.styled.js';
-
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
+const Home = lazy(() => import('./pages/Home.jsx'));
+const MoviesDetails = lazy(() =>
+  import('./pages/MoviesDetails/MoviesDetails.jsx')
+);
+const Movies = lazy(() => import('./pages/Movies.jsx'));
+const Reviews = lazy(() => import('../components/Reviews/Reviews.jsx'));
+const Cast = lazy(() => import('../components/Cast/Cast.jsx'));
+const NotFound = lazy(() => import('../components/NotFound/NotFound.jsx'));
+const Layout = lazy(() => import('../components/Layout/Layout.jsx'));
 const App = () => {
-  // const StyledLink = styled(NavLink)`
-  //   color: black;
-
-  //   &.active {
-  //     color: orange;
-  //   }
-  // `;
   return (
-    // <Container> </Container>
-
-    <Routes>
+      <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index="home" element={<Home />} />
+        <Route index="home" element={<Home />} />   
         <Route path="movies" element={<Movies />} />
         <Route path="movies/:id" element={<MoviesDetails />}>
           <Route path="cast" element={<Cast />} />

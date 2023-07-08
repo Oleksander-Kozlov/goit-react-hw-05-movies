@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Container, Header, Link, Logo } from '../../App.styled.js';
+import { Container, Header, Link, Logo } from '../App.styled';
 const Layout = () => {
   return (
     <Container>
@@ -20,7 +20,9 @@ const Layout = () => {
           <Link to="/movies">Movies</Link>
         </nav>
       </Header>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

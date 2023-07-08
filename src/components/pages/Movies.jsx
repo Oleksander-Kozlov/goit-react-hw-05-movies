@@ -1,16 +1,16 @@
 // import { ProductList } from '../components/ProductList';
 // import { getMovies } from '../fakeAPI';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { Link } from '../App.styled.js';
 // import MoviesDetails from '../MoviesDetails/MoviesDetails.jsx';
 
-import { SearchBox } from '../SearchBox/SearchBox.jsx';
+import  SearchBox  from '../SearchBox/SearchBox.jsx';
 // import { MovieList } from 'components/MovieList/MovieList.jsx';
 import { fetchQueryMovie } from 'components/Api.js';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 
-export const Movies = () => {
+const Movies = () => {
   const [movieListQuery, setMovieListQuery] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
@@ -59,7 +59,7 @@ export const Movies = () => {
 //       movie.name.toLowerCase().includes(movieName.toLowerCase())
 //     );
     
-
+const location = useLocation();
 //   const updateQueryString = (name) => {
 //     const nextParams = name !== "" ? { name } : {};
 //     setSearchParams(nextParams);
@@ -71,14 +71,20 @@ export const Movies = () => {
       {movieListQuery && (
         <ul>
           {movieListQuery.map(film => (
-            <li key={film.id}>
+            <li
               
-              <Link to={`${film.id}`}>{film.title}</Link>
+              key={film.id}
+            >
+              <Link to={`${film.id}`} state={{ from: location }}>
+                {film.title}
+              </Link>
             </li>
           ))}
         </ul>
       )}
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
     // <main>
 
@@ -89,3 +95,4 @@ export const Movies = () => {
     // </main>
   );
 };
+export default Movies

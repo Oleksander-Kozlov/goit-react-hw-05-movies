@@ -2,7 +2,7 @@ import { fetchReviewById } from "components/Api";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Reviews = () => {
+const Reviews = () => {
    const { id } = useParams();
   const [reviews, setReview] = useState(null);
   useEffect(() => {
@@ -54,3 +54,4 @@ if(reviews.length!==0)
     return <div> reviews will be writting in future</div>;
   }
 };
+export  default Reviews

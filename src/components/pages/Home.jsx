@@ -3,7 +3,7 @@ import { fetchMovieTrendToday } from '../Api.js';
 import {MovieList} from '../MovieList/MovieList.jsx'
 
 
-export const Home = () => {
+const Home = () => {
 const [movieList, setMovieList] = useState([]);
   
   useEffect(() => {
@@ -51,3 +51,4 @@ const [movieList, setMovieList] = useState([]);
     </main>
   );
 };
+export  default Home

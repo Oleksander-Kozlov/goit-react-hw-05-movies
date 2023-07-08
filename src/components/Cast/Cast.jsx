@@ -1,8 +1,9 @@
 import { fetchCastById } from 'components/Api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { CastLI } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const { id } = useParams();
   const [cast, setCast] = useState(null);
 
@@ -42,7 +43,7 @@ export const Cast = () => {
     <div>
       {cast &&
         cast.map(act => (
-          <li key={act.id}>
+          <CastLI key={act.id}>
            { act.profile_path&&
             <img
               src={`https://image.tmdb.org/t/p/w500${act.profile_path}`}
@@ -52,8 +53,9 @@ export const Cast = () => {
             />}
             <p>{act.name}</p>
             <p>character: {act.character}</p>
-          </li>
+          </CastLI>
         ))}
     </div>
   );
 };
+export default Cast
