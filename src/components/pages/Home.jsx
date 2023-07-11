@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
 import { fetchMovieTrendToday } from '../Api.js';
 import {MovieList} from '../MovieList/MovieList.jsx'
+// import { useLocation } from 'react-router-dom';
 
 
 const Home = () => {
 const [movieList, setMovieList] = useState([]);
-  
+//  const location = useLocation(); 
   useEffect(() => {
     const abortCTRL = new AbortController();
     const fetchData = async () => {

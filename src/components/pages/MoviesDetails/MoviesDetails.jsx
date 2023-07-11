@@ -36,7 +36,7 @@ const MoviesDetails = () => {
   
  
   const backLinkHref = location.state?.from ?? '/movies';
-  
+  console.log('location.state.from', location.state);
   return (
     <div>
       <p>
