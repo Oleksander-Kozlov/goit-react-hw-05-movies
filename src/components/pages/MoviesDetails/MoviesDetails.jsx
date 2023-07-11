@@ -1,5 +1,5 @@
 // import { FilmCard } from 'components/FilmCard/FilmCard';
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import {  Link } from '../../App.styled.js';
 import { fetchMovieInfoById } from '../../Api.js';
@@ -10,6 +10,7 @@ const MoviesDetails = () => {
   const { id } = useParams();
   const [filmInfo, setFilmInfo] = useState({});
   const location = useLocation();
+  const backLinkHref = useRef(location.state?.from ?? '/')
   useEffect(() => {
     const abortCTRL = new AbortController();
     const fetchData = async () => {
@@ -35,12 +36,14 @@ const MoviesDetails = () => {
     filmInfo;  
   
  
-  const backLinkHref = location.state?.from ?? '/';
-  console.log('location.state.from', location.state);
+  // const backLinkHref = location.state?.from ?? '/';
+
+  console.log('location.state.from', location.state?.from);
+  console.log(backLinkHref);
   return (
     <div>
       <p>
-        <BackLink to={backLinkHref}>GO BACK</BackLink>
+        <BackLink to={backLinkHref.current}>GO BACK</BackLink>
       </p>
       {poster_path && (
         <img
